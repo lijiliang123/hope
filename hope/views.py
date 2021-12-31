@@ -62,6 +62,8 @@ def mybrt():
     student1.show()
     student2 = Student("李四", 99)
     student2.show()
+    student3 = Student("王五", 99)
+    student3.show()
 
 
 mybrt()
