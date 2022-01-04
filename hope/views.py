@@ -1,3 +1,5 @@
+import random
+
 from django.http import HttpResponse
 from django.shortcuts import render
 import pymysql
@@ -49,14 +51,25 @@ def query():
 
 
 class Student:
+    # 类变量，定义在方法体之外，引用方法：类名.类变量名
+    number = 0
+
     def __init__(self, name, score):
         self.name = name
         self.score = score
+        # 类变量引用，统计对象初始化次数
+        Student.number = Student.number + 1
 
     def show(self):
         print("name:{}, score:{}".format(self.name, self.score))
 
+    # 类方法，前面需要用到修饰符@classmethod
+    @classmethod
+    def total(cls):
+        print("instance number:{0}".format(Student.number))
 
+
+"""
 def mybrt():
     student1 = Student("张三", 98)
     student1.show()
@@ -64,6 +77,17 @@ def mybrt():
     student2.show()
     student3 = Student("王五", 100)
     student3.show()
+    # 类方法引用
+    Student.total()
+"""
 
+# mybrt()
 
-mybrt()
+times = 100
+while times >= 1:
+    stu = "stu" + str(times)
+    # stu = Student("三三", random.randint(50, 100))
+    print(stu)
+    times = times - 1
+    continue
+Student.total()
